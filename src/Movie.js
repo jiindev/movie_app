@@ -2,13 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import './Movie.css';
 
-function Movie({id, year, title, summary, poster}){
-    return <div class="movies__movie">
+function Movie({id, year, title, summary, poster, genres}){
+    return <div className="movies__movie">
         <img src={poster} alt={title} title={title}/>
-        <div class="movie_data">
-            <h3 class="movie_title">{title}</h3>
-            <h5 class="movie__year">{year}</h5>
-            <p class="movie__summary">{summary}</p>
+        <div className="movie_data">
+            <h3 className="movie_title">{title}</h3>
+            <h5 className="movie__year">{year}</h5>
+            <p className="movie__summary">{summary}</p>
+            <ul className="genres">
+                {genres.map((genre, index)=><li className="genres__genre" key={index}>                    
+                    {genre}
+                </li>)}
+            </ul>
+            
         </div>
     </div>
 }
@@ -18,7 +24,8 @@ Movie.propTypes = {
     title:PropTypes.string.isRequired,
     summary:PropTypes.string.isRequired,
     poster:PropTypes.string.isRequired,
-    year:PropTypes.number.isRequired
+    year:PropTypes.number.isRequired,
+    genres:PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default Movie;
